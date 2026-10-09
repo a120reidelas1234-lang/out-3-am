@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OUT 3 AM — Official Website</title>
+<style>
+:root {
+    --bg: #090910;
+    --panel: #12121e;
+    --purple: #9b5cff;
+    --light: #c8a5ff;
+    --text: #f5f1ff;
+    --muted: #9995ad;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html { scroll-behavior: smooth; }
+body {
+    min-height: 100vh;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 50% 0%, #30164c 0%, transparent 45%),
+        var(--bg);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    overflow-x: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .13;
+    background-image: radial-gradient(#c8a5ff 1px, transparent 1px);
+    background-size: 34px 34px;
+}
+nav {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    width: min(1000px, calc(100% - 28px));
+    margin: 12px auto 0;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(18,18,30,.82);
+    backdrop-filter: blur(18px);
+    border: 1px solid #ffffff16;
+    border-radius: 17px;
+}
+.brand {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+.brand span { color: var(--purple); }
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 13px;
+    transition: .2s;
+}
+nav a:hover { color: var(--light); }
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 105px 20px 75px;
+    animation: appear .8s ease both;
+}
+.badge {
+    display: inline-block;
+    padding: 8px 13px;
+    color: var(--light);
+    border: 1px solid #9b5cff55;
+    background: #9b5cff12;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+h1 {
+    margin-top: 25px;
+    font-size: clamp(48px, 10vw, 92px);
+    line-height: .98;
+    letter-spacing: -4px;
+    font-weight: 950;
+}
+h1 span {
+    color: var(--purple);
+    text-shadow: 0 0 40px #9b5cff55;
+}
+.hero p {
+    max-width: 520px;
+    margin: 24px auto;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 21px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: var(--purple);
+    color: white;
+    font-weight: 800;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px #9b5cff44;
+    background: #ad78ff;
+}
+.btn.secondary {
+    margin-left: 8px;
+    background: #ffffff08;
+    border-color: #ffffff20;
+}
+section {
+    width: min(900px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 35px 0;
+}
+.section-title {
+    font-size: 25px;
+    margin-bottom: 9px;
+    letter-spacing: -.6px;
+}
+.section-desc {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 23px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+.card {
+    min-width: 0;
+    padding: 23px;
+    background: linear-gradient(145deg, #171725, #101019);
+    border: 1px solid #ffffff12;
+    border-radius: 17px;
+    transition: .25s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #9b5cff65;
+}
+.icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 17px;
+    background: #9b5cff1a;
+    color: var(--light);
+    border-radius: 12px;
+    font-size: 20px;
+}
+.card h3 { font-size: 15px; margin-bottom: 9px; }
+.card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+.key-card {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 28px;
+    border: 1px solid #9b5cff55;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #211333, #11111d 70%);
+    box-shadow: 0 0 60px #9b5cff0b;
+}
+.key-label {
+    color: var(--light);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.key-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+#key {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    color: #e2d0ff;
+    background: #080810;
+    border: 1px solid #ffffff18;
+    border-radius: 10px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    outline: none;
+}
+.note {
+    margin-top: 15px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+.warning {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #ffffff06;
+    border: 1px solid #ffffff12;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+footer {
+    margin-top: 55px;
+    padding: 27px 16px;
+    text-align: center;
+    color: var(--muted);
+    border-top: 1px solid #ffffff10;
+    font-size: 11px;
+    line-height: 2;
+}
+footer strong { color: var(--light); }
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+#toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    padding: 13px 20px;
+    border-radius: 12px;
+    background: #211333;
+    border: 1px solid #9b5cff66;
+    color: white;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    z-index: 20;
+}
+#toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+@keyframes appear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media(max-width:650px) {
+    nav { padding: 13px; }
+    nav a { margin-left: 10px; font-size: 11px; }
+    .brand { font-size: 15px; }
+    .hero { padding-top: 80px; }
+    h1 { letter-spacing: -2px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 19px; }
+    .key-card { padding: 19px; }
+    .key-row { flex-direction: column; }
+    .btn.secondary { margin-left: 0; margin-top: 10px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="brand">OUT <span>3 AM</span></div>
+    <div>
+        <a href="#sobre">Sobre</a>
+        <a href="#key-section">Key</a>
+        <a href="#discord">Discord</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="badge">✦ AFTER 3 AM ✦</div>
+    <h1>OUT <span>3 AM</span></h1>
+    <p>
+        Quando o relógio passa das três da manhã,
+        começa a experiência Out 3 AM.
+        Conheça o projeto, confira a key gratuita
+        e fique por dentro da comunidade.
+    </p>
+    <a href="#key-section" class="btn">✦ Obter key gratuita</a>
+    <a href="#sobre" class="btn secondary">Conhecer o projeto</a>
+</header>
+
+<section id="sobre" class="reveal">
+    <h2 class="section-title">O que é o Out 3 AM?</h2>
+    <p class="section-desc">
+        Um projeto com tema noturno, visual escuro e identidade inspirada
+        naquele clima estranho de jogar depois das três da manhã.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <div class="icon">🌙</div>
+            <h3>Depois das 3 AM</h3>
+            <p>
+                O nome representa a vibe noturna do projeto.
+                Não existe bloqueio automático por horário.
+            </p>
+        </article>
+        <article class="card">
+            <div class="icon">🔑</div>
+            <h3>Key gratuita</h3>
+            <p>
+                A chave informada para o projeto é gratuita.
+                Você pode copiá-la diretamente nesta página.
+            </p>
+        </article>
+        <article class="card">
+            <div class="icon">✨</div>
+            <h3>Interface personalizada</h3>
+            <p>
+                Um painel de estilo escuro, detalhes roxos,
+                cantos arredondados e animações suaves.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section id="key-section" class="reveal">
+    <h2 class="section-title">Sua key de acesso</h2>
+    <p class="section-desc">
+        A chave disponibilizada pelo projeto está abaixo.
+    </p>
+
+    <div class="key-card">
+        <div class="key-label">🔐 FREE ACCESS KEY</div>
+        <div class="key-row">
+            <input id="key" value="free_depoisdas300script" readonly>
+            <button class="btn" id="copyBtn">⧉ Copiar key</button>
+        </div>
+        <p class="note">
+            Guarde a chave para consultar quando precisar.
+            A página apenas exibe e copia o texto; ela não valida
+            a key nem confirma a compatibilidade com qualquer script.
+        </p>
+    </div>
+</section>
+
+<section id="discord" class="reveal">
+    <h2 class="section-title">Comunidade</h2>
+    <p class="section-desc">
+        Acompanhe as novidades e converse com a comunidade no Discord.
+    </p>
+    <div class="card">
+        <div class="icon">◈</div>
+        <h3>Out 3 AM Discord</h3>
+        <p>Convite para a comunidade do projeto.</p>
+        <br>
+        <a class="btn" href="https://discord.gg/T3VWAdJKmb"
+           target="_blank" rel="noopener noreferrer">
+            Entrar no Discord ↗
+        </a>
+    </div>
+</section>
+
+<footer>
+    <strong>OUT 3 AM</strong><br>
+    Projeto independente • Key gratuita<br>
+    Não afiliado nem endossado pela Roblox Corporation.
+</footer>
+
+<div id="toast">✓ Key copiada!</div>
+
+<script>
+const copyBtn = document.getElementById("copyBtn");
+const keyInput = document.getElementById("key");
+const toast = document.getElementById("toast");
+
+copyBtn.addEventListener("click", async () => {
+    try {
+        await navigator.clipboard.writeText(keyInput.value);
+    } catch {
+        keyInput.focus();
+        keyInput.select();
+        const copied = document.execCommand("copy");
+        if (!copied) {
+            toast.textContent = "Selecione e copie a key manualmente.";
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2200);
+            return;
+        }
+    }
+
+    toast.textContent = "✓ Key copiada!";
+    toast.classList.add("show");
+    copyBtn.textContent = "✓ Copiada!";
+    setTimeout(() => {
+        toast.classList.remove("show");
+        copyBtn.textContent = "⧉ Copiar key";
+    }, 1800);
+});
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
